@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Video Offline</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .player {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      background: black;
+    }
+
+    #linkBox {
+      display: none;
+      margin-top: 16px;
+    }
+
+    #linkButton {
+      display: inline-block;
+      background: #1685ff;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    #linkButton:active {
+      background: #075bb5;
+    }
+
+    #status {
+      color: #ccc;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="player">
+    <h2>Video Saya</h2>
+
+    <video id="video" controls playsinline preload="metadata">
+      <source src="video.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video ini.
+    </video>
+
+    <div id="linkBox">
+      <a id="linkButton"
+         href="https://s.shopee.co.id/8fTMz4LNmE"
+         target="_blank">
+        BUKA LINK
+      </a>
+    </div>
+
+    <p id="status">Link akan muncul pada detik ke-10.</p>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const linkBox = document.getElementById("linkBox");
+    const status = document.getElementById("status");
+
+    const waktuMuncul = 10;
+
+    video.addEventListener("timeupdate", function () {
+      if (video.currentTime >= waktuMuncul) {
+        linkBox.style.display = "block";
+        status.textContent = "Link sudah tersedia.";
+      } else {
+        linkBox.style.display = "none";
+        status.textContent =
+          "Link akan muncul pada detik ke-" + waktuMuncul + ".";
+      }
+    });
+  </script>
+</body>
+</html>
